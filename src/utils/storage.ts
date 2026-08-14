@@ -1,4 +1,4 @@
-import { ChildProfile, Message, MemoryFact, StarBadge, ParentSettings } from "../types";
+import { ChildProfile, Message, MemoryFact, StarBadge, ParentSettings, KuromiWardrobeState } from "../types";
 import { INITIAL_BADGES } from "../data/badges";
 
 const STORAGE_KEYS = {
@@ -7,8 +7,15 @@ const STORAGE_KEYS = {
   MESSAGES: "kuromi_chat_history_v1",
   MEMORIES: "kuromi_memory_ledger_v1",
   BADGES: "kuromi_star_badges_v1",
+  WARDROBE: "kuromi_wardrobe_state_v1",
   OFFLINE_CACHE: "kuromi_offline_cache_v1",
   LAST_SYNC: "kuromi_last_sync_timestamp",
+};
+
+export const DEFAULT_WARDROBE: KuromiWardrobeState = {
+  outfit: "classic_goth",
+  headwear: "pink_skull",
+  accessory: "none",
 };
 
 export const DEFAULT_PARENT_SETTINGS: ParentSettings = {
@@ -167,6 +174,26 @@ export function getStoredBadges(): StarBadge[] {
 export function saveStoredBadges(badges: StarBadge[]) {
   try {
     localStorage.setItem(STORAGE_KEYS.BADGES, JSON.stringify(badges));
+  } catch {}
+}
+
+export function getStoredWardrobe(): KuromiWardrobeState {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEYS.WARDROBE);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return {
+        ...DEFAULT_WARDROBE,
+        ...parsed,
+      };
+    }
+  } catch {}
+  return DEFAULT_WARDROBE;
+}
+
+export function saveStoredWardrobe(wardrobe: KuromiWardrobeState) {
+  try {
+    localStorage.setItem(STORAGE_KEYS.WARDROBE, JSON.stringify(wardrobe));
   } catch {}
 }
 

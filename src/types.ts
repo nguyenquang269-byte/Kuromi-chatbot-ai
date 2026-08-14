@@ -159,6 +159,56 @@ export type ParentGoalMode =
   | "confide"
   | "play_games";
 
+export type KuromiOutfitId =
+  | "classic_goth"
+  | "biker_leader"
+  | "master_chef"
+  | "romantic_lady"
+  | "smart_sensei"
+  | "sakura_kimono"
+  | "space_astronaut"
+  | "fairy_princess"
+  | "detective_sherlock"
+  | "punk_rocker"
+  | "magical_girl"
+  | "ocean_mermaid"
+  | "doctor_nurse"
+  | "artist_painter"
+  | "super_heroine"
+  | "cosy_pajamas"
+  | "sailor_school"
+  | "winter_snow"
+  | "ninja_shadow"
+  | "sports_champion"
+  | "circus_ringmaster"
+  | "flower_fairy"
+  | "cyber_punk2077"
+  | "baker_pastry"
+  | "royal_queen"
+  | "rainbow_unicorn";
+
+export type KuromiAccessoryId =
+  | "none"
+  | "kuromi_note"
+  | "shallots_skewer"
+  | "rocker_sunglasses"
+  | "magic_wand"
+  | "punk_crown"
+  | "electric_guitar";
+
+export type KuromiHeadwearId =
+  | "pink_skull"
+  | "giant_pink_bow"
+  | "witch_hat"
+  | "sakura_flower"
+  | "biker_bandana";
+
+export interface KuromiWardrobeState {
+  outfit: KuromiOutfitId;
+  accessory: KuromiAccessoryId;
+  headwear: KuromiHeadwearId;
+}
+
 export interface ParentSettings {
   activePurposes: ParentGoalMode[];
   mandatoryPrompt: string;

@@ -276,13 +276,14 @@ export default function App() {
     }
 
     // Generic friendly offline answer
+    const currentChildName = childProfile.nickname?.trim() || childProfile.name?.trim() || "bạn nhỏ";
     return {
-      reply: `Hehe, Kuromi ghi nhận câu hỏi của ${childProfile.name} nè! Bé có thể hỏi Kuromi bất kỳ phép tính toán cộng trừ nhân chia (+, -, ×, ÷) hoặc 29 chữ cái, 11 chữ ghép tiếng Việt trên vở ô ly HP001 nha!`,
+      reply: `Hehe, Kuromi ghi nhận câu hỏi của ${currentChildName} nè! Bé có thể hỏi Kuromi bất kỳ phép tính toán cộng trừ nhân chia (+, -, ×, ÷) hoặc 29 chữ cái, 11 chữ ghép tiếng Việt trên vở ô ly HP001 nha!`,
       mood: "happy" as KuromiMood,
       illustration: {
         type: "flashcard" as const,
         title: "Khám Phá Cùng Kuromi 🎀",
-        subtitle: `Dành riêng cho bạn ${childProfile.name}`,
+        subtitle: `Dành riêng cho bạn ${currentChildName}`,
         points: [
           "Học 29 chữ cái & 11 chữ ghép chuẩn font HP001 4 hàng",
           "Giải nhanh toán cộng, trừ, nhân, chia trực quan que tính",

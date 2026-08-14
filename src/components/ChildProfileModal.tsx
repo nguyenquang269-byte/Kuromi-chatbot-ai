@@ -174,7 +174,7 @@ export const ChildProfileModal: React.FC<ChildProfileModalProps> = ({
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="vd: Bé Bắp, Minh Anh..."
+                    placeholder="vd: Minh Anh, An Nhiên, Gia Hân..."
                     className="w-full px-3 py-2 rounded-xl bg-black/50 border border-[#ff31b9]/40 text-white focus:outline-none focus:border-[#ff31b9]"
                   />
                 </div>

@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Message, ChildProfile, KuromiMood } from "../types";
+import { Message, ChildProfile, KuromiMood, KuromiWardrobeState } from "../types";
 import { soundFX, speakKuromiText, stopSpeaking } from "../utils/speech";
+import { getStoredWardrobe, saveStoredWardrobe } from "../utils/storage";
 import { Kuromi3D } from "./KuromiAvatar";
+import { WardrobeModal } from "./WardrobeModal";
 import {
   Send,
   Mic,
@@ -42,8 +44,15 @@ export const ChatView: React.FC<ChatViewProps> = ({
   const [inputText, setInputText] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [recordingError, setRecordingError] = useState<string | null>(null);
+  const [isWardrobeOpen, setIsWardrobeOpen] = useState(false);
+  const [wardrobe, setWardrobe] = useState<KuromiWardrobeState>(() => getStoredWardrobe());
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const recognitionRef = useRef<any>(null);
+
+  const handleSaveWardrobe = (newWardrobe: KuromiWardrobeState) => {
+    setWardrobe(newWardrobe);
+    saveStoredWardrobe(newWardrobe);
+  };
 
   // Auto scroll to bottom when new message arrives
   useEffect(() => {
@@ -157,15 +166,25 @@ export const ChatView: React.FC<ChatViewProps> = ({
         className="relative z-10 shrink-0 mb-3 bg-gradient-to-b from-[#240c42]/90 to-[#17072b]/95 p-3 sm:p-4 rounded-2xl border border-[#ff31b9]/50 shadow-[0_4px_20px_rgba(255,49,185,0.25)] flex flex-col items-center justify-center text-center"
         id="integrated-kuromi-live-stage"
       >
-        {/* Top Floating Action Pill for Re-speaking */}
-        <div className="w-full flex items-center justify-between gap-2 mb-1">
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-[#ff31b9]/30 text-xs font-bold text-[#ff77cf]">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-spin" />
-            <span>Phòng Trò Chuyện Kuromi 3D</span>
-          </div>
+        {/* Top Header of Kuromi Frame: Wardrobe on TOP-LEFT, Audio Re-speak on Right */}
+        <div className="w-full flex items-center justify-between gap-2 mb-2">
+          {/* Top-Left Wardrobe Button */}
+          <button
+            id="kuromi-wardrobe-btn"
+            onClick={() => {
+              soundFX.playMagicChime();
+              setIsWardrobeOpen(true);
+            }}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-[#ff31b9]/40 via-purple-700/40 to-[#ff31b9]/40 hover:from-[#ff31b9]/60 hover:to-purple-700/60 border border-[#ff31b9]/70 hover:border-pink-300 text-xs font-black text-white shadow-[0_0_15px_rgba(255,49,185,0.4)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            title="Tủ Đồ Thời Trang Kuromi"
+          >
+            <span className="text-sm">👗</span>
+            <span className="text-pink-100 font-black">Tủ Đồ Kuromi</span>
+            <Sparkles className="w-3 h-3 text-amber-300 animate-pulse" />
+          </button>
 
+          {/* Right Action Pill for Re-speaking */}
           <div className="flex items-center gap-1.5">
-            {/* Audio Re-speak toggle */}
             <button
               onClick={() => {
                 soundFX.playPop();
@@ -178,7 +197,7 @@ export const ChatView: React.FC<ChatViewProps> = ({
                   });
                 }
               }}
-              className={`px-3 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 border ${
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1 border ${
                 isSpeaking
                   ? "bg-[#ff31b9] text-white border-pink-300 shadow-[0_0_12px_rgba(255,49,185,0.6)] animate-pulse"
                   : "bg-black/40 text-pink-300 hover:bg-[#ff31b9]/20 border-[#ff31b9]/40"
@@ -201,12 +220,13 @@ export const ChatView: React.FC<ChatViewProps> = ({
         </div>
 
         {/* 3D Kuromi Character Centerpiece */}
-        <div className="py-1">
+        <div className="py-1 w-full flex items-center justify-center">
           <Kuromi3D
             mood={activeMood}
             isSpeaking={isSpeaking}
             isListening={isRecording}
             size="stage"
+            wardrobe={wardrobe}
           />
         </div>
       </div>
@@ -517,6 +537,14 @@ export const ChatView: React.FC<ChatViewProps> = ({
           </button>
         </form>
       </div>
+
+      {/* Kuromi Wardrobe Modal */}
+      <WardrobeModal
+        isOpen={isWardrobeOpen}
+        onClose={() => setIsWardrobeOpen(false)}
+        currentWardrobe={wardrobe}
+        onSaveWardrobe={handleSaveWardrobe}
+      />
     </div>
   );
 };
