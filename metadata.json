@@ -1,0 +1,6 @@
+{
+  "name": "Kuromi Bé Yêu - Trợ Lý & Cô Giáo Thông Thái",
+  "description": "Chatbot giáo dục phong cách Goth-Loli Kuromi dạy tiếng Việt, kể chuyện và giải đáp thắc mắc cho trẻ em với bảng minh họa tương tác.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

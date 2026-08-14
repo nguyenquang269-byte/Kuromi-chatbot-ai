@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   VIETNAMESE PRIMARY SCHOOL FONTS & NOTEBOOK GRIDS (CHUẨN BỘ GIÁO DỤC HP001)
+   ========================================================================= */
+
+/* Font HP001 4 hàng & Chữ Viết Tay Tiểu Học */
+.font-hp001,
+.font-tieuhoc,
+.font-handwriting {
+  font-family: 'Itim', 'Mali', 'Patrick Hand', 'Pangolin', 'Caveat', cursive, sans-serif;
+  font-feature-settings: "liga" 1;
+}
+
+.font-school-letter {
+  font-family: 'Itim', 'Mali', 'Caveat', cursive, sans-serif;
+  font-weight: 700;
+}
+
+.font-primary-child {
+  font-family: 'Comfortaa', 'Itim', 'Be Vietnam Pro', sans-serif;
+}
+
+/* Authentic Vietnamese Primary School 4-Line Notebook Grid (Vở ô ly 4 hàng HP001) */
+.bg-oly-4hang {
+  background-color: #fdfaf3;
+  background-size: 100% 32px, 32px 100%;
+  background-image: 
+    linear-gradient(to bottom, 
+      rgba(37, 99, 235, 0.45) 1.5px, 
+      transparent 1.5px, 
+      transparent 7px, 
+      rgba(236, 72, 153, 0.25) 1px, 
+      transparent 1px, 
+      transparent 15px, 
+      rgba(236, 72, 153, 0.25) 1px, 
+      transparent 1px, 
+      transparent 23px, 
+      rgba(236, 72, 153, 0.25) 1px, 
+      transparent 1px, 
+      transparent 31px
+    ),
+    linear-gradient(to right, rgba(37, 99, 235, 0.18) 1.5px, transparent 1.5px);
+}
+
+/* 5-Line Notebook Grid (Vở ô ly 5 hàng) */
+.bg-oly-5hang {
+  background-color: #fbfbf6;
+  background-size: 100% 40px, 40px 100%;
+  background-image: 
+    linear-gradient(to bottom, 
+      rgba(37, 99, 235, 0.5) 1.5px, 
+      transparent 1.5px, 
+      transparent 7px, 
+      rgba(236, 72, 153, 0.22) 1px, 
+      transparent 1px, 
+      transparent 15px, 
+      rgba(236, 72, 153, 0.22) 1px, 
+      transparent 1px, 
+      transparent 23px, 
+      rgba(236, 72, 153, 0.22) 1px, 
+      transparent 1px, 
+      transparent 31px,
+      rgba(236, 72, 153, 0.22) 1px,
+      transparent 1px,
+      transparent 39px
+    ),
+    linear-gradient(to right, rgba(37, 99, 235, 0.2) 1.5px, transparent 1.5px);
+}
+
+.bg-grid-school {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(99, 102, 241, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.15) 1px, transparent 1px);
+}
+
+.bg-grid-school-dense {
+  background-size: 16px 16px;
+  background-image: 
+    linear-gradient(to right, rgba(236, 72, 153, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(236, 72, 153, 0.18) 1px, transparent 1px);
+}
+
+/* Dotted guide for writing tracing */
+.font-dotted-guide {
+  stroke-dasharray: 4, 4;
+  color: #94a3b8;
+}
+
+/* Custom Immersive UI Goth-Loli Scrollbar */
+.custom-scrollbar::-webkit-scrollbar,
+.scrollbar-hide::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track,
+.scrollbar-hide::-webkit-scrollbar-track {
+  background: rgba(26, 11, 46, 0.6);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.scrollbar-hide::-webkit-scrollbar-thumb {
+  background: rgba(255, 49, 185, 0.5);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover,
+.scrollbar-hide::-webkit-scrollbar-thumb:hover {
+  background: #ff31b9;
+  box-shadow: 0 0 10px rgba(255, 49, 185, 0.8);
+}
